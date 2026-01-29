@@ -12,6 +12,7 @@ Anteriormente estudié psicología porque me gusta escuchar a las personas y ofr
 
 * 🧠 Psicólogo graduado de la Universidad Rafael Urdaneta (URU).
 * 📚 Estudiante de la carrera de Ingeniería en Computación de la Universidad Rafael Urdaneta (URU).
+* Me gusta la programación orientada a la web y en algún futuro me gustaría adentrarme más a fondo en la programación a bajo nivel.
 * Terminal enjoyer 😎. Si algo se puede hacer en la terminal, se hace en la terminal.
 * Me aburre hacer documentación: Probablemente esto sea lo más bonito y ordenado que vas a leer de mi persona.
 * Me gusta entender el cómo y por qué las cosas funcionan.
