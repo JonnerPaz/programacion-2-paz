@@ -132,7 +132,7 @@ int main() {
     cout << "Implemente las funciones marcadas con TODO para completar el ejercicio." << endl;
 
     int opcion;
-    do {
+    while (opcion != 5) {
         mostrarMenu();
         cin >> opcion;
 
@@ -143,42 +143,45 @@ int main() {
             cin >> tamanio;
 
             arreglo = crearArreglo(tamanio);
-            if (arreglo != nullptr) {
-                llenarArreglo(arreglo, tamanio);
-                cout << "Arreglo creado y llenado correctamente." << endl;
-            } else {
+            if (isArrayNull(arreglo)) {
                 cout << "Error al crear el arreglo." << endl;
+                continue;
             }
+
+            llenarArreglo(arreglo, tamanio);
+            cout << "Arreglo creado y llenado correctamente." << endl;
             break;
 
         case 2:
             // Mostrar arreglo
-            if (arreglo != nullptr) {
-                mostrarArreglo(arreglo, tamanio);
-            } else {
-                cout << "No hay arreglo creado. Use la opción 1 primero." << endl;
+            if (isArrayNull(arreglo) || tamanio <= 0) {
+                cout << "No hay arreglo creado. Use la opcion 1 primero." << endl;
+                continue;
             }
+
+            mostrarArreglo(arreglo, tamanio);
             break;
 
         case 3:
             // Encontrar número mayor
-            if (arreglo != nullptr && tamanio > 0) {
-                int mayor = encontrarMayor(arreglo, tamanio);
-                cout << "El número mayor es: " << mayor << endl;
-            } else {
-                cout << "No hay arreglo creado o está vacío." << endl;
+            if (isArrayNull(arreglo) || tamanio <= 0) {
+                cout << "No hay arreglo creado o está vacío. Use la opcion 1 primero." << endl;
+                continue;
             }
+            cout << "El número mayor es: " << encontrarMayor(arreglo, tamanio) << endl;
             break;
 
         case 4:
             // Calcular promedio
-            if (arreglo != nullptr && tamanio > 0) {
+            if (isArrayNull(arreglo) || tamanio <= 0) {
+                cout << "No hay arreglo creado o está vacío. Use la opcion 1 primero." << endl;
+                continue;
+                // leaving else here to avoid compiler from complaining
+            } else {
                 float promedio = calcularPromedio(arreglo, tamanio);
                 // std::fixed tells the output to always show decimal places
                 // std::setprecision sets the number of decimal places, in this case 2
                 cout << "El promedio es: " << fixed << setprecision(2) << promedio << endl;
-            } else {
-                cout << "No hay arreglo creado o está vacío." << endl;
             }
             break;
 
@@ -190,7 +193,7 @@ int main() {
             cout << "Opción inválida. Intente nuevamente." << endl;
             break;
         }
-    } while (opcion != 5);
+    }
 
     // Liberar memoria antes de salir
     liberarArreglo(arreglo);
