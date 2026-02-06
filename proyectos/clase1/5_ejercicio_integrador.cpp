@@ -15,7 +15,7 @@ int* crearArreglo(int size) {
     }
 
     int* dynamic_arr = new int[size];
-    if (dynamic_arr == nullptr) {
+    if (isArrayNull(dynamic_arr)) {
         cout << "No se pudo crear el arreglo dinamico." << endl;
         return nullptr;
     }
