@@ -43,14 +43,14 @@ template <Number T> struct Property {
 template <Number T> void assignProperty(Property<T> property) {
     while (true) {
         cout << property.message;
-        cin >> property.assignProp;
-        if (cin.fail()) {
+        if (cin >> property.assignProp) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            break;
+        } else {
             cout << property.errorMessage << endl << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
         }
-        break;
     }
 }
 
@@ -80,7 +80,6 @@ void llenarEstudiantes(Escuela& escuela) {
                              .errorMessage = "Error: id invalido"});
 
         cout << std::format("Ingresa el NOMBRE del estudiante #{}: ", i + 1);
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.getline(escuela.estudiantes[i].nombre, 40);
 
         assignProperty<float>(
@@ -111,7 +110,7 @@ void llenarMaterias(Escuela& escuela) {
              .errorMessage = "Error al ingresar el codigo de la materia: código inválido"});
 
         cout << std::format("Ingresa el NOMBRE de la materia #{}: ", i + 1);
-        cin >> escuela.materias[i].nombre;
+        cin.getline(escuela.materias[i].nombre, 40);
 
         assignProperty<int>(
             {.assignProp = escuela.materias[i].creditos,
@@ -128,16 +127,16 @@ void mostrarEscuela(const Escuela& escuela) {
     cout << "Cantidad de materias: " << escuela.cantidadMaterias << endl;
     for (int i = 0; i < escuela.cantidadEstudiantes; i++) {
         cout << "-------------------------------" << endl;
-        cout << setw(10) << escuela.estudiantes[i].id << endl;
-        cout << setw(10) << escuela.estudiantes[i].nombre << endl;
-        cout << setw(10) << escuela.estudiantes[i].promedio << endl;
+        cout << setw(10) << std::format("ID: {}", escuela.estudiantes[i].id) << endl;
+        cout << setw(10) << std::format("NOMBRE: {}", escuela.estudiantes[i].nombre) << endl;
+        cout << setw(10) << std::format("PROMEDIO: {}", escuela.estudiantes[i].promedio) << endl;
     }
 
     for (int i = 0; i < escuela.cantidadMaterias; i++) {
         cout << "-------------------------------" << endl;
-        cout << setw(10) << escuela.materias[i].nombre << endl;
-        cout << setw(10) << escuela.materias[i].codigo << endl;
-        cout << setw(10) << escuela.materias[i].creditos << endl;
+        cout << setw(10) << std::format("NOMBRE: {}", escuela.materias[i].nombre) << endl;
+        cout << setw(10) << std::format("CODIGO: {}", escuela.materias[i].codigo) << endl;
+        cout << setw(10) << std::format("CREDITOS: {}", escuela.materias[i].creditos) << endl;
     }
 }
 
