@@ -1,0 +1,3 @@
+[submodule "proyectos/PapayaStore"]
+	path = proyectos/PapayaStore
+	url = git@github.com:JonnerPaz/PapayaStore.git
